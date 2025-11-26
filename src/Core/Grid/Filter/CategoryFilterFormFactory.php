@@ -70,7 +70,7 @@ final class CategoryFilterFormFactory implements GridFilterFormFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create(GridDefinitionInterface $definition)
+    public function create(GridDefinitionInterface $definition, string $submitActionUrl)
     {
         $categoryFilterForm = $this->formFactory->create($definition);
 

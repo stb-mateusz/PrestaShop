@@ -69,7 +69,7 @@ final class FilterFormFactoryFormActionDecorator implements GridFilterFormFactor
     /**
      * {@inheritdoc}
      */
-    public function create(GridDefinitionInterface $definition)
+    public function create(GridDefinitionInterface $definition, string $submitActionUrl)
     {
         $filterForm = $this->delegate->create($definition);
 

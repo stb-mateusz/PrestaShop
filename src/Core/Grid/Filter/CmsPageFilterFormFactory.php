@@ -70,7 +70,7 @@ final class CmsPageFilterFormFactory implements GridFilterFormFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create(GridDefinitionInterface $definition)
+    public function create(GridDefinitionInterface $definition, string $submitActionUrl)
     {
         $cmsPageCategoryFilterForm = $this->formFactory->create($definition);
 
