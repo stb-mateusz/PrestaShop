@@ -68,6 +68,7 @@ abstract class AbstractGridDefinitionFactory implements GridDefinitionFactoryInt
         $definition = new GridDefinition(
             $this->getId(),
             $this->getName(),
+            $this->getRoute(),
             $this->getColumns(),
             $this->getFilters(),
             $this->getGridActions(),
@@ -95,6 +96,16 @@ abstract class AbstractGridDefinitionFactory implements GridDefinitionFactoryInt
      * @return string
      */
     abstract protected function getName();
+
+    /**
+     * Get grid route.
+     *
+     * @return string
+     */
+    protected function getRoute()
+    {
+        return null;
+    }
 
     /**
      * Get defined columns for grid.

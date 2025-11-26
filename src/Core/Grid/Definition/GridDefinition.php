@@ -51,6 +51,11 @@ final class GridDefinition implements GridDefinitionInterface
     private $name;
 
     /**
+     * @var string Grid route name
+     */
+    private $route;
+
+    /**
      * @var ColumnCollectionInterface
      */
     private $columns;
@@ -78,6 +83,7 @@ final class GridDefinition implements GridDefinitionInterface
     /**
      * @param string $id Unique grid identifier
      * @param string $name
+     * @param string $route
      * @param ColumnCollectionInterface $columns
      * @param FilterCollectionInterface $filters
      * @param GridActionCollectionInterface $gridActions
@@ -87,6 +93,7 @@ final class GridDefinition implements GridDefinitionInterface
     public function __construct(
         $id,
         $name,
+        $route,
         ColumnCollectionInterface $columns,
         FilterCollectionInterface $filters,
         GridActionCollectionInterface $gridActions,
@@ -95,6 +102,7 @@ final class GridDefinition implements GridDefinitionInterface
     ) {
         $this->id = $id;
         $this->name = $name;
+        $this->route = $route;
         $this->columns = $columns;
         $this->filters = $filters;
         $this->gridActions = $gridActions;
@@ -116,6 +124,14 @@ final class GridDefinition implements GridDefinitionInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoute()
+    {
+        return $this->route;
     }
 
     /**

@@ -34,6 +34,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
+use PrestaShop\PrestaShop\Core\Grid\Filter\RouteParamFilter;
 
 /**
  * Before we introduced the filterId notion to store/clean filters on grids the solution
@@ -88,6 +89,13 @@ class ControllerResponseBuilder
             $redirectParams = [
                 'filters' => $filtersForm->getData(),
             ];
+
+            foreach($definition->getFilters()->all() as $filter) {
+                if($filter instanceof RouteParamFilter) {
+                    $queryParamsToKeep[] = $filter->getName();
+                    unset($redirectParams[$filterId]['filters'][$filter->getName()]);
+                }
+            }
         }
 
         foreach ($queryParamsToKeep as $paramName) {

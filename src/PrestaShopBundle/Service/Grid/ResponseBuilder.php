@@ -36,6 +36,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Router;
+use PrestaShop\PrestaShop\Core\Grid\Filter\RouteParamFilter;
 
 class ResponseBuilder
 {
@@ -92,6 +93,13 @@ class ResponseBuilder
                         'filters' => $filtersForm->getData(),
                     ],
                 ];
+
+                foreach($definition->getFilters()->all() as $filter) {
+                    if($filter instanceof RouteParamFilter) {
+                        $queryParamsToKeep[] = $filter->getName();
+                        unset($redirectParams[$filterId]['filters'][$filter->getName()]);
+                    }
+                }
             } else {
                 foreach ($filtersForm->getErrors(true) as $error) {
                     $fieldLabel = $error->getOrigin()->getConfig()->getOption('label') ?: $error->getOrigin()->getName();

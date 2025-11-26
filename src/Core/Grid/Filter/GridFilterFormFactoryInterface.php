@@ -38,8 +38,9 @@ interface GridFilterFormFactoryInterface
      * Create filters form for grid definition.
      *
      * @param GridDefinitionInterface $definition
+     * @param string $submitActionUrl
      *
      * @return FormInterface
      */
-    public function create(GridDefinitionInterface $definition);
+    public function create(GridDefinitionInterface $definition, string $submitActionUrl);
 }

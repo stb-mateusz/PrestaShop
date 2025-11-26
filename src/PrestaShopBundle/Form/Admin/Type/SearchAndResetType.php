@@ -63,6 +63,8 @@ class SearchAndResetType extends AbstractType
             $availableValueNames = array_keys($form->getParent()->getData());
 
             $configuredData = array_intersect($configuredTypeNames, $availableValueNames);
+            $configuredData = array_diff_key(array_flip($configuredData), $options['redirect_route_params']);
+
             if (!empty($configuredData)) {
                 $showResetButton = true;
             }

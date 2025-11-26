@@ -53,6 +53,13 @@ interface GridDefinitionInterface
     public function getName();
 
     /**
+     * Get grid route.
+     *
+     * @return string
+     */
+    public function getRoute();
+
+    /**
      * Get grid columns.
      *
      * @return ColumnCollectionInterface

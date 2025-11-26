@@ -63,7 +63,7 @@ final class GridFilterFormFactory implements GridFilterFormFactoryInterface
     /**
      * {@inheritdoc}
      */
-    public function create(GridDefinitionInterface $definition)
+    public function create(GridDefinitionInterface $definition, string $submitActionUrl = null)
     {
         $formBuilder = $this->formFactory->createNamedBuilder(
             $definition->getId(),
@@ -89,6 +89,10 @@ final class GridFilterFormFactory implements GridFilterFormFactoryInterface
         $this->hookDispatcher->dispatchWithParameters('action' . Container::camelize($definition->getId()) . 'GridFilterFormModifier', [
             'filter_form_builder' => $formBuilder,
         ]);
+
+        if(!is_null($submitActionUrl)) {
+            $formBuilder->setAction($submitActionUrl);
+        }
 
         return $formBuilder->getForm();
     }
